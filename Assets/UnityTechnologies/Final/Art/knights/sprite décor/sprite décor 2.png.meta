@@ -572,7 +572,25 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "sprite d\xE9cor 2_0": 3858568136063248632
+      "sprite d\xE9cor 2_1": 5312847342320805214
+      "sprite d\xE9cor 2_10": -3496437024720863205
+      "sprite d\xE9cor 2_11": -9159376423935855753
+      "sprite d\xE9cor 2_12": 9096751247902233010
+      "sprite d\xE9cor 2_13": -7239664849684580742
+      "sprite d\xE9cor 2_14": -6155443631883623743
+      "sprite d\xE9cor 2_15": -6548885554998283143
+      "sprite d\xE9cor 2_16": -2343030921269014608
+      "sprite d\xE9cor 2_17": 1797535682530897608
+      "sprite d\xE9cor 2_2": -4031881697500905256
+      "sprite d\xE9cor 2_3": 1611921693457920727
+      "sprite d\xE9cor 2_4": 6918157775822736677
+      "sprite d\xE9cor 2_5": -7892545767603706069
+      "sprite d\xE9cor 2_6": -3657036694070256447
+      "sprite d\xE9cor 2_7": -711080790635841677
+      "sprite d\xE9cor 2_8": -2127194055116390739
+      "sprite d\xE9cor 2_9": 5543780546474797180
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
