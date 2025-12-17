@@ -1,0 +1,520 @@
+fileFormatVersion: 2
+guid: 6bef0cb3765d49640b14d640c73469dd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -166447024893527841
+    second: Spikes on a checkered surface_0
+  - first:
+      213: -1494413725347038306
+    second: Spikes on a checkered surface_1
+  - first:
+      213: 6790952490162553726
+    second: Spikes on a checkered surface_2
+  - first:
+      213: -2605489241235838158
+    second: Spikes on a checkered surface_3
+  - first:
+      213: 2061154890983241844
+    second: Spikes on a checkered surface_4
+  - first:
+      213: 9032252219914730449
+    second: Spikes on a checkered surface_5
+  - first:
+      213: -428174447122045555
+    second: Spikes on a checkered surface_6
+  - first:
+      213: 8145727785530453603
+    second: Spikes on a checkered surface_7
+  - first:
+      213: -1145881750343532350
+    second: Spikes on a checkered surface_8
+  - first:
+      213: 2481642004199912856
+    second: Spikes on a checkered surface_9
+  - first:
+      213: 3143932171398979996
+    second: Spikes on a checkered surface_10
+  - first:
+      213: 2909508730453279668
+    second: Spikes on a checkered surface_11
+  - first:
+      213: 5257112009037968755
+    second: Spikes on a checkered surface_12
+  - first:
+      213: 401741436984941021
+    second: Spikes on a checkered surface_13
+  - first:
+      213: 683900125123526716
+    second: Spikes on a checkered surface_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Spikes on a checkered surface_0
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 636
+        width: 214
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd8fc4f0059a0bdf0800000000000000
+      internalID: -166447024893527841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spikes on a checkered surface_1
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 687
+        width: 209
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9bb83172a6c24be0800000000000000
+      internalID: -1494413725347038306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spikes on a checkered surface_2
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 459
+        width: 190
+        height: 236
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7381be4f4f4e3e50800000000000000
+      internalID: 6790952490162553726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spikes on a checkered surface_3
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 647
+        width: 186
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23b290ee65177dbd0800000000000000
+      internalID: -2605489241235838158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spikes on a checkered surface_4
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 439
+        width: 188
+        height: 253
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4787d10f371ba9c10800000000000000
+      internalID: 2061154890983241844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spikes on a checkered surface_5
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 455
+        width: 153
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1db30c10a81095d70800000000000000
+      internalID: 9032252219914730449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spikes on a checkered surface_6
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 215
+        width: 222
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d852461eb91de0af0800000000000000
+      internalID: -428174447122045555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spikes on a checkered surface_7
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 455
+        width: 149
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36e629553407b0170800000000000000
+      internalID: 8145727785530453603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spikes on a checkered surface_8
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 255
+        width: 164
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c0cb248e920910f0800000000000000
+      internalID: -1145881750343532350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spikes on a checkered surface_9
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 236
+        width: 157
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89536082140907220800000000000000
+      internalID: 2481642004199912856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spikes on a checkered surface_10
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 53
+        width: 154
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c91a82217ad71ab20800000000000000
+      internalID: 3143932171398979996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spikes on a checkered surface_11
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 197
+        width: 137
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b3c09d66c6a06820800000000000000
+      internalID: 2909508730453279668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spikes on a checkered surface_12
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 55
+        width: 107
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 375f523d48305f840800000000000000
+      internalID: 5257112009037968755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spikes on a checkered surface_13
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 57
+        width: 122
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd9da0b55b5439500800000000000000
+      internalID: 401741436984941021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spikes on a checkered surface_14
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 79
+        width: 106
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3045d35a83bd7900800000000000000
+      internalID: 683900125123526716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Spikes on a checkered surface_0: -166447024893527841
+      Spikes on a checkered surface_1: -1494413725347038306
+      Spikes on a checkered surface_10: 3143932171398979996
+      Spikes on a checkered surface_11: 2909508730453279668
+      Spikes on a checkered surface_12: 5257112009037968755
+      Spikes on a checkered surface_13: 401741436984941021
+      Spikes on a checkered surface_14: 683900125123526716
+      Spikes on a checkered surface_2: 6790952490162553726
+      Spikes on a checkered surface_3: -2605489241235838158
+      Spikes on a checkered surface_4: 2061154890983241844
+      Spikes on a checkered surface_5: 9032252219914730449
+      Spikes on a checkered surface_6: -428174447122045555
+      Spikes on a checkered surface_7: 8145727785530453603
+      Spikes on a checkered surface_8: -1145881750343532350
+      Spikes on a checkered surface_9: 2481642004199912856
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
