@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6203638327231777116}
   - component: {fileID: -3890106419473140096}
   - component: {fileID: 1048526224625705357}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: redspike
   m_TagString: Untagged
   m_Icon: {fileID: 0}

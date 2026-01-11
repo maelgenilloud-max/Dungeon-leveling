@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6942033993121839925}
   - component: {fileID: 7940350924082781905}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spikes on a checkered surface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
