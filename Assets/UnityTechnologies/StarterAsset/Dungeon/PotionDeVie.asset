@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594a84febb1142c4090ada1e9a8cb751, type: 3}
   m_Name: PotionDeVie
   m_EditorClassIdentifier: 
-  itemName: 
-  icon: {fileID: 0}
+  itemName: Potion
+  icon: {fileID: 21300000, guid: 2b563fb6073a98d45a562d63f6cc6d52, type: 3}
   description: 
   type: 0
   stackable: 1
