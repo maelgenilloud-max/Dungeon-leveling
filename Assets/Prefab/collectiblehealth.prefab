@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5042598872904459666}
   - component: {fileID: 973328000860688793}
   - component: {fileID: 9156365097532352014}
-  - component: {fileID: 3609054645898091798}
+  - component: {fileID: 643808524275679330}
   m_Layer: 0
   m_Name: collectiblehealth
   m_TagString: Untagged
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.855761, y: 3.3683512}
   m_EdgeRadius: 0
---- !u!114 &3609054645898091798
+--- !u!114 &643808524275679330
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,6 +144,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2993768551619652410}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0940485a9177ce44c9a4ea172da09f28, type: 3}
+  m_Script: {fileID: 11500000, guid: 969e0e0b22c66764993ffdf1e01e88f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 103c30c1082a4a34bb909ee077e0899a, type: 2}
+  amount: 1
