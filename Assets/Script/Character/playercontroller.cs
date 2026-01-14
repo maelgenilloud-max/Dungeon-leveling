@@ -1,11 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerController : MonoBehaviour
 {
-<<<<<<< HEAD
     // Movement
-=======
     // Death / Respawn
     public GameObject deathScreen;
     public Transform respawnPoint;
@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
 
     // Variables related to player character movement
 
->>>>>>> de1890ba8a2ed95c69bcf92080a577bb365d7863
     public InputAction MoveAction;
     private Rigidbody2D rigidbody2d;
     private Vector2 move;
@@ -50,8 +49,6 @@ public class PlayerController : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
-<<<<<<< HEAD
-=======
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         deathScreenGroup = deathScreen.GetComponent<CanvasGroup>();
@@ -61,7 +58,6 @@ public class PlayerController : MonoBehaviour
         deathScreenGroup.interactable = false;
         deathScreenGroup.blocksRaycasts = false;
 
->>>>>>> de1890ba8a2ed95c69bcf92080a577bb365d7863
     }
 
     void Update()
@@ -94,8 +90,6 @@ public class PlayerController : MonoBehaviour
         {
             TryLaunchKunai();
         }
-<<<<<<< HEAD
-=======
 
         if (currentHealth <= 0 && !isDead)
         {
@@ -103,7 +97,6 @@ public class PlayerController : MonoBehaviour
         }
 
 
->>>>>>> de1890ba8a2ed95c69bcf92080a577bb365d7863
     }
 
     void FixedUpdate()
@@ -156,9 +149,7 @@ public class PlayerController : MonoBehaviour
 
         animator.SetTrigger("Launch");
     }
-<<<<<<< HEAD
-}
-=======
+
 
     void Die()
     {
@@ -204,4 +195,3 @@ public class PlayerController : MonoBehaviour
 
 
 }
->>>>>>> de1890ba8a2ed95c69bcf92080a577bb365d7863
