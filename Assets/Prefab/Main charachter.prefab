@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5929532809520492114}
   m_Layer: 8
   m_Name: Main charachter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,6 +103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b0dc360a198b44c93247bf1fb078fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathScreen: {fileID: 0}
+  respawnPoint: {fileID: 0}
+  fadeSpeed: 2
   MoveAction:
     m_Name: Move
     m_Type: 0
@@ -157,6 +160,7 @@ MonoBehaviour:
   timeInvincible: 2
   projectilePrefab: {fileID: 4460146723978484887, guid: 08933de8182e4d94cbf3aee6ed989674,
     type: 3}
+  kunaiItemData: {fileID: 0}
 --- !u!50 &641203901775912033
 Rigidbody2D:
   serializedVersion: 5

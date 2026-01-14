@@ -95,8 +95,7 @@ public class PlayerController : MonoBehaviour
         {
             Die();
         }
-
-
+    
     }
 
     void FixedUpdate()
@@ -140,9 +139,15 @@ public class PlayerController : MonoBehaviour
     {
         GameObject projectileObject = Instantiate(
             projectilePrefab,
-            rigidbody2d.position + Vector2.up * 0.5f,
+            rigidbody2d.position + Vector2.up * 0.5f, //spawn devant le joueur
             Quaternion.identity
         );
+
+        // Ignore collision joueur <-> projectile
+        Collider2D playerCol = GetComponent<Collider2D>();
+        Collider2D projCol = projectileObject.GetComponent<Collider2D>();
+        if (playerCol != null && projCol != null)
+            Physics2D.IgnoreCollision(projCol, playerCol);
 
         Projectile projectile = projectileObject.GetComponent<Projectile>();
         projectile.Launch(moveDirection, 300);

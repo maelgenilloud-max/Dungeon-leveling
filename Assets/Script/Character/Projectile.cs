@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [Header("Movement / Lifetime")]
+    [SerializeField] private float destroyDistance = 100f;   // comme le tuto (évite qu'un projectile vive à l'infini)
+    [SerializeField] private float spriteAngleOffset = -90f; // ajuste selon l'orientation du sprite
+
     private Rigidbody2D rb;
 
-    // Awake is called when the Projectile GameObject is instantiated
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -14,14 +15,20 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-        // Oriente le kunai dans la direction du mouvement
-        if (rb.linearVelocity.sqrMagnitude > 0.01f)
+        // 1) Destruction loin de la map (version tuto)
+        if (transform.position.magnitude > destroyDistance)
         {
-            float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
+            Destroy(gameObject);
+            return;
+        }
 
-            // Si ton sprite pointe vers le haut par défaut, garde -90f.
-            // Si ce n'est pas correct, essaie 0f, +90f, ou 180f.
-            transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
+        // 2) Orientation du kunai dans la direction du mouvement (ton script)
+        // Unity 6: rb.linearVelocity (si tu es en Unity 2022, remplace par rb.velocity)
+        Vector2 v = rb.linearVelocity;
+        if (v.sqrMagnitude > 0.01f)
+        {
+            float angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, angle + spriteAngleOffset);
         }
     }
 
@@ -32,7 +39,12 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        
+
+        // 4) Debug (ton script)
         Debug.Log("Projectile collision with " + other.gameObject);
+
+        // 5) Destruction du projectile (les deux scripts)
         Destroy(gameObject);
     }
 }
