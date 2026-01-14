@@ -131,11 +131,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  vertical: 0
+  vertical: 1
   changeTime: 3
   chaseRadius: 3.5
   chaseSpeed: 2
   stopChaseRadius: 4.5
+  contactDamage: 1
+  damageInterval: 1
 --- !u!95 &3297672207525280820
 Animator:
   serializedVersion: 7
