@@ -5,19 +5,26 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     // ---------------------------
-    // Patrouille (comme avant)
+    // Patrouille
     // ---------------------------
     public float speed = 2f;
     public bool vertical = true;
     public float changeTime = 3.0f;
 
     // ---------------------------
-    // Aggro / Chase
+    // Chase
     // ---------------------------
     [Header("Chase")]
-    public float chaseRadius = 3.5f;      // rayon à partir duquel il te poursuit
-    public float chaseSpeed = 2.5f;       // vitesse en poursuite (souvent un peu +)
-    public float stopChaseRadius = 4.5f;  // rayon pour “désaggro” (hystérésis)
+    public float chaseRadius = 3.5f;
+    public float chaseSpeed = 2.5f;
+    public float stopChaseRadius = 4.5f;
+
+    // ---------------------------
+    // Damage over time
+    // ---------------------------
+    [Header("Damage")]
+    public int contactDamage = 1;          // dégâts par tick
+    public float damageInterval = 1.0f;    // 1 dégât toutes les X secondes
 
     Rigidbody2D rigidbody2d;
     Animator animator;
@@ -27,6 +34,10 @@ public class EnemyController : MonoBehaviour
 
     Transform player;
     bool chasing = false;
+
+    // DoT state
+    PlayerController playerInContact;
+    float damageTimer = 0f;
 
     void Start()
     {
@@ -44,15 +55,9 @@ public class EnemyController : MonoBehaviour
 
         float dist = Vector2.Distance(transform.position, player.position);
 
-        // Entrée en chase
-        if (!chasing && dist <= chaseRadius)
-            chasing = true;
+        if (!chasing && dist <= chaseRadius) chasing = true;
+        if (chasing && dist >= stopChaseRadius) chasing = false;
 
-        // Sortie de chase (un peu plus loin pour éviter que ça clignote)
-        if (chasing && dist >= stopChaseRadius)
-            chasing = false;
-
-        // Timer de patrouille seulement si pas en chase
         if (!chasing)
         {
             timer -= Time.deltaTime;
@@ -60,6 +65,17 @@ public class EnemyController : MonoBehaviour
             {
                 direction = -direction;
                 timer = changeTime;
+            }
+        }
+
+        // Damage over time while touching
+        if (playerInContact != null)
+        {
+            damageTimer -= Time.deltaTime;
+            if (damageTimer <= 0f)
+            {
+                playerInContact.ChangeHealth(-contactDamage);
+                damageTimer = damageInterval;
             }
         }
     }
@@ -76,7 +92,6 @@ public class EnemyController : MonoBehaviour
             Vector2 newPos = position + toPlayer * chaseSpeed * Time.fixedDeltaTime;
             rigidbody2d.MovePosition(newPos);
 
-            // Anim (si tu utilises Move X / Move Y)
             if (animator != null)
             {
                 animator.SetFloat("Move X", toPlayer.x);
@@ -85,7 +100,6 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            // Patrouille originale
             if (vertical)
             {
                 position.y = position.y + speed * direction * Time.fixedDeltaTime;
@@ -109,12 +123,39 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    // Début contact
     void OnTriggerEnter2D(Collider2D other)
     {
-        PlayerController playerController = other.GetComponent<PlayerController>();
-        if (playerController != null)
+        PlayerController pc = other.GetComponent<PlayerController>();
+        if (pc != null)
         {
-            playerController.ChangeHealth(-1);
+            playerInContact = pc;
+            damageTimer = 0f; // dégâts immédiats au premier contact
         }
     }
+
+    // Contact continu (au cas où Enter ne déclenche pas selon la config)
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (playerInContact != null) return;
+
+        PlayerController pc = other.GetComponent<PlayerController>();
+        if (pc != null)
+        {
+            playerInContact = pc;
+            damageTimer = 0f;
+        }
+    }
+
+    // Fin contact
+    void OnTriggerExit2D(Collider2D other)
+    {
+        PlayerController pc = other.GetComponent<PlayerController>();
+        if (pc != null && pc == playerInContact)
+        {
+            playerInContact = null;
+            damageTimer = 0f;
+        }
+    }
+
 }
