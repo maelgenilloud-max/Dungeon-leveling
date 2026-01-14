@@ -3,7 +3,21 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+<<<<<<< HEAD
     // Movement
+=======
+    // Death / Respawn
+    public GameObject deathScreen;
+    public Transform respawnPoint;
+    public float fadeSpeed = 2f;
+
+    private CanvasGroup deathScreenGroup;
+    private SpriteRenderer spriteRenderer;
+    private bool isDead = false;
+
+    // Variables related to player character movement
+
+>>>>>>> de1890ba8a2ed95c69bcf92080a577bb365d7863
     public InputAction MoveAction;
     private Rigidbody2D rigidbody2d;
     private Vector2 move;
@@ -36,6 +50,18 @@ public class PlayerController : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
+<<<<<<< HEAD
+=======
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        deathScreenGroup = deathScreen.GetComponent<CanvasGroup>();
+
+        deathScreen.SetActive(true);
+        deathScreenGroup.alpha = 0;
+        deathScreenGroup.interactable = false;
+        deathScreenGroup.blocksRaycasts = false;
+
+>>>>>>> de1890ba8a2ed95c69bcf92080a577bb365d7863
     }
 
     void Update()
@@ -68,6 +94,16 @@ public class PlayerController : MonoBehaviour
         {
             TryLaunchKunai();
         }
+<<<<<<< HEAD
+=======
+
+        if (currentHealth <= 0 && !isDead)
+        {
+            Die();
+        }
+
+
+>>>>>>> de1890ba8a2ed95c69bcf92080a577bb365d7863
     }
 
     void FixedUpdate()
@@ -120,4 +156,52 @@ public class PlayerController : MonoBehaviour
 
         animator.SetTrigger("Launch");
     }
+<<<<<<< HEAD
 }
+=======
+
+    void Die()
+    {
+        isDead = true;
+        StartCoroutine(FadeInDeathScreen());
+        Time.timeScale = 0.2f;
+
+        if (spriteRenderer != null)
+            spriteRenderer.enabled = false;
+    }
+
+    IEnumerator FadeInDeathScreen()
+    {
+        while (deathScreenGroup.alpha < 1)
+        {
+            deathScreenGroup.alpha += Time.unscaledDeltaTime * fadeSpeed;
+            yield return null;
+        }
+
+        deathScreenGroup.interactable = true;
+        deathScreenGroup.blocksRaycasts = true;
+        Time.timeScale = 0f;
+    }
+
+    public void Respawn()
+    {
+        isDead = false;
+        currentHealth = maxHealth;
+        Time.timeScale = 1f;
+
+        if (respawnPoint != null)
+            transform.position = respawnPoint.position;
+
+        deathScreenGroup.alpha = 0;
+        deathScreenGroup.interactable = false;
+        deathScreenGroup.blocksRaycasts = false;
+
+        if (spriteRenderer != null)
+            spriteRenderer.enabled = true;
+
+        UIHandler.instance.SetHealthValue(1f);
+    }
+
+
+}
+>>>>>>> de1890ba8a2ed95c69bcf92080a577bb365d7863
