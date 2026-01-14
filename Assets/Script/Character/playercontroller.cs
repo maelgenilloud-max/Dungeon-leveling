@@ -11,6 +11,14 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 
 {
+    // Death / Respawn
+    public GameObject deathScreen;
+    public Transform respawnPoint;
+    public float fadeSpeed = 2f;
+
+    private CanvasGroup deathScreenGroup;
+    private SpriteRenderer spriteRenderer;
+    private bool isDead = false;
 
     // Variables related to player character movement
 
@@ -86,6 +94,14 @@ public class PlayerController : MonoBehaviour
 
         currentHealth = maxHealth;
 
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        deathScreenGroup = deathScreen.GetComponent<CanvasGroup>();
+
+        deathScreen.SetActive(true);
+        deathScreenGroup.alpha = 0;
+        deathScreenGroup.interactable = false;
+        deathScreenGroup.blocksRaycasts = false;
+
     }
 
 
@@ -150,6 +166,10 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        if (currentHealth <= 0 && !isDead)
+        {
+            Die();
+        }
 
 
     }
@@ -226,6 +246,47 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    void Die()
+    {
+        isDead = true;
+        StartCoroutine(FadeInDeathScreen());
+        Time.timeScale = 0.2f;
+
+        if (spriteRenderer != null)
+            spriteRenderer.enabled = false;
+    }
+
+    IEnumerator FadeInDeathScreen()
+    {
+        while (deathScreenGroup.alpha < 1)
+        {
+            deathScreenGroup.alpha += Time.unscaledDeltaTime * fadeSpeed;
+            yield return null;
+        }
+
+        deathScreenGroup.interactable = true;
+        deathScreenGroup.blocksRaycasts = true;
+        Time.timeScale = 0f;
+    }
+
+    public void Respawn()
+    {
+        isDead = false;
+        currentHealth = maxHealth;
+        Time.timeScale = 1f;
+
+        if (respawnPoint != null)
+            transform.position = respawnPoint.position;
+
+        deathScreenGroup.alpha = 0;
+        deathScreenGroup.interactable = false;
+        deathScreenGroup.blocksRaycasts = false;
+
+        if (spriteRenderer != null)
+            spriteRenderer.enabled = true;
+
+        UIHandler.instance.SetHealthValue(1f);
+    }
 
 
 }
