@@ -52,6 +52,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1f; //fluidité
+        
         MoveAction.Enable();
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -150,29 +152,32 @@ public class PlayerController : MonoBehaviour
 
     void Launch()
     {
-        GameObject projectileObject = Instantiate(
-            projectilePrefab,
-            rigidbody2d.position + Vector2.up * 0.5f,
-            Quaternion.identity
-        );
+        // Sécurité: si aucune direction (ex: player immobile au lancement), on ne tire pas
+        if (moveDirection.sqrMagnitude < 0.001f)
+            moveDirection = Vector2.right;
 
-        // Ignore collision player <-> projectile
-        Collider2D playerCol = GetComponent<Collider2D>();
-        Collider2D projCol = projectileObject.GetComponent<Collider2D>();
-        if (playerCol != null && projCol != null)
-            Physics2D.IgnoreCollision(projCol, playerCol);
+        // Spawn devant le joueur (et pas toujours au-dessus)
+        Vector2 spawnOffset = moveDirection.normalized * 0.6f; // ajuste 0.4f à 0.8f selon ton collider
+        Vector2 spawnPos = rigidbody2d.position + spawnOffset;
+
+        GameObject projectileObject = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
+
+        // Ignore collision joueur <-> projectile (tous les colliders si besoin)
+        var playerCols = GetComponentsInChildren<Collider2D>();
+        var projCols = projectileObject.GetComponentsInChildren<Collider2D>();
+        foreach (var pc in playerCols)
+            foreach (var prc in projCols)
+                Physics2D.IgnoreCollision(prc, pc, true);
 
         Projectile projectile = projectileObject.GetComponent<Projectile>();
-
-        // OPTIONAL (next step): pass damage to projectile if your Projectile has a damage field
-        // projectile.damage = attackDamage;
-
-        projectile.Launch(moveDirection, 300);
         projectile.SetDamage(attackDamage);
 
+        // IMPORTANT: avec Impulse dans Projectile, une force 12-25 suffit souvent
+        projectile.Launch(moveDirection, 20f);
 
         animator.SetTrigger("Launch");
     }
+
 
     void Die()
     {
@@ -184,6 +189,7 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.enabled = false;
     }
 
+    //écran de mort
     IEnumerator FadeInDeathScreen()
     {
         while (deathScreenGroup.alpha < 1)
@@ -197,6 +203,7 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    //réaparission après la mort
     public void Respawn()
     {
         isDead = false;
