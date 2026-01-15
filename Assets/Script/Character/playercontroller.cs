@@ -2,10 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 public class PlayerController : MonoBehaviour
 {
-    // Movement
     // Death / Respawn
     public GameObject deathScreen;
     public Transform respawnPoint;
@@ -15,15 +13,22 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool isDead = false;
 
-    // Variables related to player character movement
-
+    // Movement
     public InputAction MoveAction;
     private Rigidbody2D rigidbody2d;
     private Vector2 move;
-    public float speed = 3.0f;
+
+    [Header("Base Stats (no bonus)")]
+    public float baseSpeed = 3.0f;
+    public int baseMaxHealth = 5;
+    public int baseAttackDamage = 1;
+
+    [Header("Runtime Stats (with bonus)")]
+    public float speed;          // used by movement
+    public int maxHealth;        // used by health clamp
+    public int attackDamage;     // used later for projectile damage
 
     // Health
-    public int maxHealth = 5;
     private int currentHealth;
     public int health { get { return currentHealth; } }
 
@@ -41,14 +46,15 @@ public class PlayerController : MonoBehaviour
 
     // Kunai ammo (Inventory item)
     [Header("Kunai Ammo")]
-    public ItemData kunaiItemData; // drag your Kunai ScriptableObject here
+    public ItemData kunaiItemData;
+
+    private PlayerProgression progression;
 
     void Start()
     {
         MoveAction.Enable();
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        currentHealth = maxHealth;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         deathScreenGroup = deathScreen.GetComponent<CanvasGroup>();
@@ -58,6 +64,17 @@ public class PlayerController : MonoBehaviour
         deathScreenGroup.interactable = false;
         deathScreenGroup.blocksRaycasts = false;
 
+        progression = GetComponent<PlayerProgression>();
+
+        // Init from base
+        speed = baseSpeed;
+        maxHealth = baseMaxHealth;
+        attackDamage = baseAttackDamage;
+
+        currentHealth = maxHealth;
+        UIHandler.instance.SetHealthValue(1f);
+
+        ApplyProgression();
     }
 
     void Update()
@@ -95,11 +112,11 @@ public class PlayerController : MonoBehaviour
         {
             Die();
         }
-    
     }
 
     void FixedUpdate()
     {
+        // speed is the CURRENT speed (base + bonus)
         Vector2 position = rigidbody2d.position + move * speed * Time.deltaTime;
         rigidbody2d.MovePosition(position);
     }
@@ -124,14 +141,10 @@ public class PlayerController : MonoBehaviour
         if (Inventory.Instance == null) return;
         if (kunaiItemData == null) return;
 
-        // no ammo -> no shot
         if (!Inventory.Instance.Has(kunaiItemData, 1))
             return;
 
-        // consume 1
         Inventory.Instance.Remove(kunaiItemData, 1);
-
-        // launch projectile
         Launch();
     }
 
@@ -139,22 +152,27 @@ public class PlayerController : MonoBehaviour
     {
         GameObject projectileObject = Instantiate(
             projectilePrefab,
-            rigidbody2d.position + Vector2.up * 0.5f, //spawn devant le joueur
+            rigidbody2d.position + Vector2.up * 0.5f,
             Quaternion.identity
         );
 
-        // Ignore collision joueur <-> projectile
+        // Ignore collision player <-> projectile
         Collider2D playerCol = GetComponent<Collider2D>();
         Collider2D projCol = projectileObject.GetComponent<Collider2D>();
         if (playerCol != null && projCol != null)
             Physics2D.IgnoreCollision(projCol, playerCol);
 
         Projectile projectile = projectileObject.GetComponent<Projectile>();
+
+        // OPTIONAL (next step): pass damage to projectile if your Projectile has a damage field
+        // projectile.damage = attackDamage;
+
         projectile.Launch(moveDirection, 300);
+        projectile.SetDamage(attackDamage);
+
 
         animator.SetTrigger("Launch");
     }
-
 
     void Die()
     {
@@ -182,7 +200,16 @@ public class PlayerController : MonoBehaviour
     public void Respawn()
     {
         isDead = false;
+        if (progression != null)
+        {
+            progression.ResetAll();
+            ApplyProgression(); // remet maxHealth/speed/attack aux bases
+        }
+
+
+        // Re-init from current maxHealth
         currentHealth = maxHealth;
+
         Time.timeScale = 1f;
 
         if (respawnPoint != null)
@@ -195,8 +222,27 @@ public class PlayerController : MonoBehaviour
         if (spriteRenderer != null)
             spriteRenderer.enabled = true;
 
-        UIHandler.instance.SetHealthValue(1f);
+        UIHandler.instance.SetHealthValue(currentHealth / (float)maxHealth);
     }
 
+    public void ApplyProgression()
+    {
+        if (progression == null) return;
 
+        // Keep current HP percentage when maxHealth changes
+        float hpPercent = (maxHealth > 0) ? (currentHealth / (float)maxHealth) : 1f;
+
+        // Apply bonuses
+        maxHealth = baseMaxHealth + progression.GetExtraMaxHealth();
+        speed = baseSpeed + progression.GetExtraSpeed();
+        attackDamage = baseAttackDamage + progression.GetExtraAttack();
+
+        if (maxHealth < 1) maxHealth = 1;
+
+        // Re-apply current health with same % (or clamp)
+        currentHealth = Mathf.Clamp(Mathf.RoundToInt(hpPercent * maxHealth), 0, maxHealth);
+
+        // Update UI
+        UIHandler.instance.SetHealthValue(currentHealth / (float)maxHealth);
+    }
 }

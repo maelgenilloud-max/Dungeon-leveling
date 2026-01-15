@@ -84,4 +84,27 @@ public class Inventory : MonoBehaviour
     return true;
 }
 
+public bool UseXpPotion(XpPotionItemData xpPotion, PlayerController player)
+{
+    Debug.Log("[XP] UseXpPotion called");
+
+    if (xpPotion == null || player == null) return false;
+
+    var prog = player.GetComponent<PlayerProgression>();
+    if (prog == null)
+    {
+        Debug.LogWarning("[XP] PlayerProgression missing on player");
+        return false;
+    }
+
+    Debug.Log($"[XP] +{xpPotion.xpPointsGained} points");
+    prog.AddXpPoints(xpPotion.xpPointsGained);
+
+    Remove(xpPotion, 1);
+    return true;
+}
+
+
+
+
 }

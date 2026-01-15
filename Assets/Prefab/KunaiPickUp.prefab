@@ -149,6 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23aa6a08a20f70f44aea33e76c6a06c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyDistance: 100
+  spriteAngleOffset: -90
 --- !u!114 &8683264103347661067
 MonoBehaviour:
   m_ObjectHideFlags: 0

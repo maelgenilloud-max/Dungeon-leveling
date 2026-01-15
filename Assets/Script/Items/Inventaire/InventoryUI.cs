@@ -80,11 +80,21 @@ public class InventoryUI : MonoBehaviour
 
     public void OnUseButtonClicked()
     {
-        if (selectedItem is not PotionItemData potion) return;
+        if (selectedItem == null) return;
 
         PlayerController player = FindObjectOfType<PlayerController>();
         if (player == null) return;
 
-        Inventory.Instance.UsePotion(potion, player);
+        if (selectedItem is PotionItemData potion)
+        {
+            Inventory.Instance.UsePotion(potion, player);
+            return;
+        }
+
+        if (selectedItem is XpPotionItemData xpPotion)
+        {
+            Inventory.Instance.UseXpPotion(xpPotion, player);
+            return;
+        }
     }
 }

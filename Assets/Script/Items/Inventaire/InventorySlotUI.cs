@@ -24,7 +24,6 @@ public class InventorySlotUI : MonoBehaviour
         icon.sprite = (item != null) ? item.icon : null;
         icon.enabled = (icon.sprite != null);
 
-        // Pour le test, affiche aussi 1
         qtyText.text = quantity.ToString();
     }
 
@@ -40,18 +39,24 @@ public class InventorySlotUI : MonoBehaviour
     {
         if (item == null) return;
 
-        // Si c'est une potion, on l'utilise directement
+        PlayerController player = Object.FindFirstObjectByType<PlayerController>();
+        if (player == null) return;
+
+        // Potion de vie
         if (item is PotionItemData potion)
         {
-            PlayerController player = FindObjectOfType<PlayerController>();
-            if (player == null) return;
-
             Inventory.Instance.UsePotion(potion, player);
             return;
         }
 
-        // Sinon, juste sélectionner (pour équipements, etc.)
+        // Potion d'XP
+        if (item is XpPotionItemData xpPotion)
+        {
+            Inventory.Instance.UseXpPotion(xpPotion, player);
+            return;
+        }
+
+        // Sinon, sélectionner (équipement, etc.)
         inventoryUI.SelectItem(item);
     }
-
 }

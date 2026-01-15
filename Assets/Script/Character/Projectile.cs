@@ -5,6 +5,8 @@ public class Projectile : MonoBehaviour
     [Header("Movement / Lifetime")]
     [SerializeField] private float destroyDistance = 100f;   // comme le tuto (évite qu'un projectile vive à l'infini)
     [SerializeField] private float spriteAngleOffset = -90f; // ajuste selon l'orientation du sprite
+    [SerializeField] private int damage = 1;
+
 
     private Rigidbody2D rb;
 
@@ -37,14 +39,21 @@ public class Projectile : MonoBehaviour
         rb.AddForce(direction * force);
     }
 
+    public void SetDamage(int value)
+    {
+        damage = Mathf.Max(1, value);
+    }
+
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        
+        EnemyHealth enemy = other.GetComponentInParent<EnemyHealth>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(damage);
+        }
 
-        // 4) Debug (ton script)
-        Debug.Log("Projectile collision with " + other.gameObject);
-
-        // 5) Destruction du projectile (les deux scripts)
         Destroy(gameObject);
     }
+
 }
